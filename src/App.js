@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="wrapper">
       <div className="content">
+        <nav></nav>
         <Routes>
           <Route path="/" element={<Authorization />} exact />
           <Route path="/login" element={<Login />} exact />
