@@ -1,6 +1,5 @@
 import React from "react";
 import FormAuthorizaton from "../components/form/FormAuthorization";
-import * as yup from "yup";
 
 function Authorization() {
   return (

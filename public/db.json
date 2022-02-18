@@ -1,0 +1,22 @@
+{
+  "app": [
+    {
+      "id": 0,
+      "email": "sdaads",
+      "password": "dsadas",
+      "confirmPassword": "dsadsa"
+    },
+    {
+      "id": 1,
+      "email": "dsadas",
+      "password": "dsadas",
+      "confirmPassword": "dsadasd"
+    },
+    {
+      "id": 2,
+      "email": "dsadas",
+      "password": "dsadasd",
+      "confirmPassword": "dsadasdas"
+    }
+  ]
+}
