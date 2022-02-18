@@ -18,6 +18,18 @@ function FormAuthorizaton() {
       .required("Обязательно"),
   });
 
+  // var elements = document.querySelectorAll("input");
+
+  // for (let i = 0; i < elements.length; i++) {
+  //   (function (element) {
+  //     var id = element.getAttribute("id");
+  //     element.value = sessionStorage.getItem(id); // обязательно наличие у элементов id
+  //     element.oninput = function () {
+  //       sessionStorage.setItem(id, element.value);
+  //     };
+  //   })(elements[i]);
+  // }
+
   return (
     <div className="container-form">
       <Formik
@@ -46,6 +58,7 @@ function FormAuthorizaton() {
             <p>
               <label htmlFor={`email`}>Email</label>
               <input
+                id={"email"}
                 className={`input`}
                 type={`text`}
                 name={`email`}
