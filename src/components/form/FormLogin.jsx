@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 function FormLogin() {
@@ -72,28 +73,16 @@ function FormLogin() {
             {touched.password && errors.password && (
               <p className={`error`}>{errors.password}</p>
             )}
-            <p>
-              <label htmlFor={`confirmPassword`}>Подтвердите пароль</label>
-              <input
-                className={`input`}
-                type={`password`}
-                name={`confirmPassword`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.confirmPassword}
-              />
-            </p>
-            {touched.confirmPassword && errors.confirmPassword && (
-              <p className={`error`}>{errors.confirmPassword}</p>
-            )}
-            <button
-              className={"button"}
-              disabled={!isValid && !dirty}
-              onClick={handleSubmit}
-              type={`submit`}
-            >
-              Далее
-            </button>
+            <Link to="/changePassword">
+              <button
+                className={"button"}
+                disabled={!isValid && !dirty}
+                onClick={handleSubmit}
+                type={`submit`}
+              >
+                Далее
+              </button>
+            </Link>
           </div>
         )}
       </Formik>

@@ -1,13 +1,14 @@
 import React from "react";
 import { Formik } from "formik";
+import { Link } from "react-router-dom";
 import * as yup from "yup";
 
 function FormAuthorizaton() {
   const validationSchema = yup.object().shape({
-    // name: yup.string().typeError(`Должно быть строкой`).required("Обязательно"),
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
       .string()
+      .min(4, "В пароле должно быть больше 4 символов")
       .typeError(`Должно быть строкой`)
       .required("Обязательно"),
     confirmPassword: yup
@@ -86,14 +87,16 @@ function FormAuthorizaton() {
             {touched.confirmPassword && errors.confirmPassword && (
               <p className={`error`}>{errors.confirmPassword}</p>
             )}
-            <button
-              className={"button"}
-              disabled={!isValid && !dirty}
-              onClick={handleSubmit}
-              type={`submit`}
-            >
-              Далее
-            </button>
+            <Link to="/login">
+              <button
+                className={"button"}
+                disabled={!isValid && !dirty}
+                onClick={handleSubmit}
+                type={`submit`}
+              >
+                Далее
+              </button>
+            </Link>
           </div>
         )}
       </Formik>
