@@ -2,9 +2,18 @@ import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 
-function Form() {
+function FormAuthorizaton() {
   const validationSchema = yup.object().shape({
-    name: yup.string().typeError(`Должно быть строкой`).required("Обязательно"),
+    // name: yup.string().typeError(`Должно быть строкой`).required("Обязательно"),
+    email: yup.string().email("Введите верный email").required("Обязательно"),
+    password: yup
+      .string()
+      .typeError(`Должно быть строкой`)
+      .required("Обязательно"),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref("password")], "Пароли не совпадают")
+      .required("Обязательно"),
   });
 
   return (
@@ -46,36 +55,36 @@ function Form() {
                 value={values.email}
               />
             </p>
-            {touched.name && errors.name && (
-              <p className={`error`}>{errors.name}</p>
+            {touched.email && errors.email && (
+              <p className={`error`}>{errors.email}</p>
             )}
             <p>
               <label htmlFor={`password`}>Пароль</label>
               <input
                 className={`input`}
-                type={`text`}
+                type={`password`}
                 name={`password`}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
               />
             </p>
-            {touched.name && errors.name && (
-              <p className={`error`}>{errors.name}</p>
+            {touched.password && errors.password && (
+              <p className={`error`}>{errors.password}</p>
             )}
             <p>
               <label htmlFor={`confirmPassword`}>Подтвердите пароль</label>
               <input
                 className={`input`}
-                type={`text`}
+                type={`password`}
                 name={`confirmPassword`}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.confirmPassword}
               />
             </p>
-            {touched.name && errors.name && (
-              <p className={`error`}>{errors.name}</p>
+            {touched.confirmPassword && errors.confirmPassword && (
+              <p className={`error`}>{errors.confirmPassword}</p>
             )}
             <button
               className={"button"}
@@ -92,4 +101,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default FormAuthorizaton;
