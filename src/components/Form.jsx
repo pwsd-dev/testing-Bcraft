@@ -8,7 +8,7 @@ function Form() {
   });
 
   return (
-    <div className="container">
+    <div className="container-form">
       <Formik
         initialValues={{
           name: "",
@@ -36,20 +36,49 @@ function Form() {
         }) => (
           <div className={`form`}>
             <p>
-              <label htmlFor={`name`}>Имя</label>
+              <label htmlFor={`email`}>Email</label>
               <input
                 className={`input`}
                 type={`text`}
-                name={`name`}
+                name={`email`}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.name}
+                value={values.email}
+              />
+            </p>
+            {touched.name && errors.name && (
+              <p className={`error`}>{errors.name}</p>
+            )}
+            <p>
+              <label htmlFor={`password`}>Пароль</label>
+              <input
+                className={`input`}
+                type={`text`}
+                name={`password`}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.password}
+              />
+            </p>
+            {touched.name && errors.name && (
+              <p className={`error`}>{errors.name}</p>
+            )}
+            <p>
+              <label htmlFor={`confirmPassword`}>Подтвердите пароль</label>
+              <input
+                className={`input`}
+                type={`text`}
+                name={`confirmPassword`}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.confirmPassword}
               />
             </p>
             {touched.name && errors.name && (
               <p className={`error`}>{errors.name}</p>
             )}
             <button
+              className={"button"}
               disabled={!isValid && !dirty}
               onClick={handleSubmit}
               type={`submit`}

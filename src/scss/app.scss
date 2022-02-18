@@ -20,33 +20,46 @@ body {
   padding: 40px 0;
 }
 
-.container {
-  width: $container-width;
+.container-form {
+  // width: $container-width;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
-// .form {
-//   //   display: flex;
-//   //   flex-direction: column;
-//   //   justify-content: center;
-//   //   height: calc(80vh - 50px);
-//   //   flex-grow: 1;
-//   height: 60vh;
-//   display: block;
-//   input {
-//     // padding-left: 10px;
-//     // margin: 30px;
-//     // height: 50px;
-//     // border-radius: 10px;
-
-//     border: 1px solid rgba(161, 161, 161, 0.5);
-//   }
-
-//   .error {
-//     color: red;
-//   }
-// }
-
 .form {
-  width: 300px;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  label {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .input {
+    border-color: rgba(64, 64, 64, 0.1);
+    padding-left: 10px;
+    width: 30vw;
+    height: 30px;
+    outline: none;
+    border-radius: 5px;
+  }
+
+  button {
+    align-self: flex-end;
+  }
+}
+
+.button {
+  height: 35px;
+  padding: 0 20px;
+  background-color: $background;
+  color: #fff;
+  border: none;
+
+  border-radius: 10px;
+  margin-top: 30px;
 }
