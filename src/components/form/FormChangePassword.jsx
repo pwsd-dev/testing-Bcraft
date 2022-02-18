@@ -8,6 +8,8 @@ function FormChangePassword() {
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
       .string()
+      .min(4, "В пароле должно быть больше 4 символов")
+      .matches(/[A-Z]/, "Пароль должен содержать заглавную букву")
       .typeError(`Должно быть строкой`)
       .required("Обязательно"),
     confirmPassword: yup
@@ -20,12 +22,9 @@ function FormChangePassword() {
     <div className="container-form">
       <Formik
         initialValues={{
-          name: "",
-          secondName: "",
+          email: "",
           password: "",
           confirmPassword: "",
-          email: "",
-          confirmEmail: "",
         }}
         validateOnBlur
         onSubmit={(values) => {

@@ -5,10 +5,11 @@ import * as yup from "yup";
 
 function FormLogin() {
   const validationSchema = yup.object().shape({
-    // name: yup.string().typeError(`Должно быть строкой`).required("Обязательно"),
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
       .string()
+      .min(4, "В пароле должно быть больше 4 символов")
+      .matches(/[A-Z]/, "Пароль должен содержать заглавную букву")
       .typeError(`Должно быть строкой`)
       .required("Обязательно"),
     confirmPassword: yup
@@ -21,16 +22,13 @@ function FormLogin() {
     <div className="container-form">
       <Formik
         initialValues={{
-          name: "",
-          secondName: "",
+          email: "",
           password: "",
           confirmPassword: "",
-          email: "",
-          confirmEmail: "",
         }}
         validateOnBlur
         onSubmit={(values) => {
-          console.log(values);
+          setTimeout(console.log(JSON.stringify(values)), 300);
         }}
         validationSchema={validationSchema}
       >
