@@ -2,6 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
+import LocalStorageUpdate from "../LocalStorageUpdate";
 
 function FormAuthorizaton() {
   const validationSchema = yup.object().shape({
@@ -18,22 +19,11 @@ function FormAuthorizaton() {
       .required("Обязательно"),
   });
 
-  // var elements = document.querySelectorAll("input");
-
-  // for (let i = 0; i < elements.length; i++) {
-  //   (function (element) {
-  //     var id = element.getAttribute("id");
-  //     element.value = sessionStorage.getItem(id); // обязательно наличие у элементов id
-  //     element.oninput = function () {
-  //       sessionStorage.setItem(id, element.value);
-  //     };
-  //   })(elements[i]);
-  // }
-
   return (
     <div className="container-form">
       <Formik
         initialValues={{
+          name: "",
           email: "",
           password: "",
           confirmPassword: "",
@@ -54,51 +44,51 @@ function FormAuthorizaton() {
           handleSubmit,
           dirty,
         }) => (
-          <div className={`form`}>
-            <p>
-              <label htmlFor={`email`}>Email</label>
-              <input
-                id={"email"}
-                className={`input`}
-                type={`text`}
-                name={`email`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-              />
-            </p>
-            {touched.email && errors.email && (
-              <p className={`error`}>{errors.email}</p>
-            )}
-            <p>
-              <label htmlFor={`password`}>Пароль</label>
-              <input
-                className={`input`}
-                type={`password`}
-                name={`password`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.password}
-              />
-            </p>
-            {touched.password && errors.password && (
-              <p className={`error`}>{errors.password}</p>
-            )}
-            <p>
-              <label htmlFor={`confirmPassword`}>Подтвердите пароль</label>
-              <input
-                className={`input`}
-                type={`password`}
-                name={`confirmPassword`}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.confirmPassword}
-              />
-            </p>
-            {touched.confirmPassword && errors.confirmPassword && (
-              <p className={`error`}>{errors.confirmPassword}</p>
-            )}
-            <Link to="/login">
+          <>
+            <div className={`form`}>
+              <p>
+                <label htmlFor={`email`}>Email</label>
+                <input
+                  className={`input`}
+                  type={`text`}
+                  name={`email`}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  defaultValue={values.email}
+                />
+              </p>
+              {touched.email && errors.email && (
+                <p className={`error`}>{errors.email}</p>
+              )}
+              <p>
+                <label htmlFor={`password`}>Пароль</label>
+                <input
+                  className={`input`}
+                  type={`password`}
+                  name={`password`}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.password}
+                />
+              </p>
+              {touched.password && errors.password && (
+                <p className={`error`}>{errors.password}</p>
+              )}
+              <p>
+                <label htmlFor={`confirmPassword`}>Подтвердите пароль</label>
+                <input
+                  className={`input`}
+                  type={`password`}
+                  name={`confirmPassword`}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.confirmPassword}
+                />
+              </p>
+              {touched.confirmPassword && errors.confirmPassword && (
+                <p className={`error`}>{errors.confirmPassword}</p>
+              )}
+
               <button
                 className={"button"}
                 disabled={!isValid && !dirty}
@@ -107,8 +97,9 @@ function FormAuthorizaton() {
               >
                 Далее
               </button>
-            </Link>
-          </div>
+            </div>
+            <LocalStorageUpdate />
+          </>
         )}
       </Formik>
     </div>
