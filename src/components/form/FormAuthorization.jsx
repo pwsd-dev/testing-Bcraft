@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as yup from "yup";
 import LocalStorageUpdate from "../LocalStorageUpdate";
 
-function FormAuthorizaton() {
+function FormAuthorizaton({ onCb }) {
   const validationSchema = yup.object().shape({
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
@@ -19,15 +19,27 @@ function FormAuthorizaton() {
       .required("Обязательно"),
   });
 
+  const isValues = localStorage.getItem("email");
+
+  let initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  if (isValues) {
+    initialValues.email = isValues;
+  }
+
+  let handleChangeTwo = (e) => {
+    localStorage.setItem("email", e.target.value);
+  };
+
   return (
     <div className="container-form">
       <Formik
-        initialValues={{
-          name: "",
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
+        initialValues={initialValues}
         validateOnBlur
         onSubmit={(values) => {
           setTimeout(console.log(JSON.stringify(values)), 300);
@@ -52,7 +64,7 @@ function FormAuthorizaton() {
                   className={`input`}
                   type={`text`}
                   name={`email`}
-                  onChange={handleChange}
+                  onChange={(handleChange, handleChangeTwo)}
                   onBlur={handleBlur}
                   defaultValue={values.email}
                 />
@@ -98,7 +110,6 @@ function FormAuthorizaton() {
                 Далее
               </button>
             </div>
-            <LocalStorageUpdate />
           </>
         )}
       </Formik>

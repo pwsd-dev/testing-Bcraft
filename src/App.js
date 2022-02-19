@@ -24,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} exact />
           <Route path="/changePassword" element={<ChangePassword />} exact />
         </Routes>
+
         <nav className="container-form container-form__nav">
           <Link to="/">
             <button className="button">Authorization</button>
