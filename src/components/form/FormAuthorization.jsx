@@ -11,11 +11,11 @@ function FormAuthorizaton({ handleClick }) {
   const [password, setPassword] = React.useState("");
 
   const dispatch = useDispatch();
-  const { push } = useNavigate();
+  const navigate = useNavigate();
 
   const handleRegister = (email, password) => {
     const auth = getAuth();
-    console.log(auth);
+
     createUserWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
@@ -25,7 +25,7 @@ function FormAuthorizaton({ handleClick }) {
             token: user.accessToken,
           })
         );
-        push("/login");
+        navigate("/home");
       })
       .catch(console.error);
   };
@@ -67,7 +67,6 @@ function FormAuthorizaton({ handleClick }) {
         initialValues={initialValues}
         validateOnBlur
         onSubmit={(values) => {
-          // need a help
           let { email, password } = values;
           handleRegister(email, password);
         }}
@@ -131,7 +130,6 @@ function FormAuthorizaton({ handleClick }) {
               {touched.confirmPassword && errors.confirmPassword && (
                 <p className={`error`}>{errors.confirmPassword}</p>
               )}
-
               <button
                 className={"button"}
                 disabled={!isValid && !dirty}

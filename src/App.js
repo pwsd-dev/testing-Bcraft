@@ -12,7 +12,7 @@ function App() {
           <Route path="/" element={<Authorization />} exact />
           <Route path="/login" element={<Login />} exact />
           <Route path="/changePassword" element={<ChangePassword />} exact />
-          <Route path="/Home" element={<Home />} exact />
+          <Route path="/home" element={<Home />} exact />
         </Routes>
 
         <nav className="container-form container-form__nav">

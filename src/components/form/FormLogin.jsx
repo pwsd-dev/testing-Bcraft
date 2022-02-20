@@ -1,20 +1,33 @@
 import React from "react";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
 import * as yup from "yup";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function FormLogin({ handleClick }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogin = (email, password) => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password).then(console.log);
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        dispatch(
+          setUser({
+            email: user.email,
+            user: user.uid,
+            token: user.accessToken,
+          })
+        );
+        navigate("/home");
+      })
+      .catch(console.error);
   };
 
   const validationSchema = yup.object().shape({
@@ -25,10 +38,6 @@ function FormLogin({ handleClick }) {
       .matches(/[A-Z]/, "Пароль должен содержать заглавную букву")
       .typeError(`Должно быть строкой`)
       .required("Обязательно"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password")], "Пароли не совпадают")
-      .required("Обязательно"),
   });
 
   const isValues = localStorage.getItem("email");
@@ -37,7 +46,6 @@ function FormLogin({ handleClick }) {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   };
 
   if (isValues) {
@@ -54,7 +62,8 @@ function FormLogin({ handleClick }) {
         initialValues={initialValues}
         validateOnBlur
         onSubmit={(values) => {
-          setTimeout(console.log(JSON.stringify(values)), 300);
+          let { email, password } = values;
+          handleLogin(email, password);
         }}
         validationSchema={validationSchema}
       >
@@ -101,16 +110,14 @@ function FormLogin({ handleClick }) {
             {touched.password && errors.password && (
               <p className={`error`}>{errors.password}</p>
             )}
-            <Link to="/changePassword">
-              <button
-                className={"button"}
-                disabled={!isValid && !dirty}
-                onClick={(() => handleClick(email, password), handleSubmit)}
-                type={`button`}
-              >
-                Далее
-              </button>
-            </Link>
+            <button
+              className={"button"}
+              disabled={!isValid && !dirty}
+              onClick={(() => handleClick(email, password), handleSubmit)}
+              type={`button`}
+            >
+              Далее
+            </button>
           </div>
         )}
       </Formik>
