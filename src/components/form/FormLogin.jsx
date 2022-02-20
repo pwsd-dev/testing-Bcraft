@@ -106,7 +106,7 @@ function FormLogin({ handleClick }) {
                 className={"button"}
                 disabled={!isValid && !dirty}
                 onClick={(() => handleClick(email, password), handleSubmit)}
-                // type={`submit`}
+                type={`button`}
               >
                 Далее
               </button>

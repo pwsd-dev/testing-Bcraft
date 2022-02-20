@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-import { Authorization, Login, ChangePassword } from "./pages";
+import { Authorization, Login, ChangePassword, Home } from "./pages";
 
 import "./scss/app.scss";
 
@@ -12,6 +12,7 @@ function App() {
           <Route path="/" element={<Authorization />} exact />
           <Route path="/login" element={<Login />} exact />
           <Route path="/changePassword" element={<ChangePassword />} exact />
+          <Route path="/Home" element={<Home />} exact />
         </Routes>
 
         <nav className="container-form container-form__nav">

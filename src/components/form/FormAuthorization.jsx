@@ -1,17 +1,17 @@
 import React from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
-
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-// import * as firebase from "firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 function FormAuthorizaton({ handleClick }) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const dispatch = useDispatch();
+  const { push } = useNavigate();
 
   const handleRegister = (email, password) => {
     const auth = getAuth();
@@ -25,6 +25,7 @@ function FormAuthorizaton({ handleClick }) {
             token: user.accessToken,
           })
         );
+        push("/login");
       })
       .catch(console.error);
   };
@@ -69,9 +70,6 @@ function FormAuthorizaton({ handleClick }) {
           // need a help
           let { email, password } = values;
           handleRegister(email, password);
-          // handleClick(email, password);
-          // setTimeout(console.log(JSON.stringify(values)), 300);
-          // handleRegister(values);
         }}
         validationSchema={validationSchema}
       >
@@ -137,11 +135,7 @@ function FormAuthorizaton({ handleClick }) {
               <button
                 className={"button"}
                 disabled={!isValid && !dirty}
-                onClick={
-                  (() => handleClick(email, password),
-                  handleSubmit,
-                  handleRegister)
-                }
+                onClick={(() => handleClick(email, password), handleSubmit)}
                 type={`button`}
               >
                 Далее
