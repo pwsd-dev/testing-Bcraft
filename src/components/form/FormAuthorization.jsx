@@ -66,11 +66,12 @@ function FormAuthorizaton({ handleClick }) {
         initialValues={initialValues}
         validateOnBlur
         onSubmit={(values) => {
-          const { email, password } = values;
+          // need a help
+          let { email, password } = values;
           handleRegister(email, password);
-          handleClick(email, password);
-
+          // handleClick(email, password);
           // setTimeout(console.log(JSON.stringify(values)), 300);
+          // handleRegister(values);
         }}
         validationSchema={validationSchema}
       >
