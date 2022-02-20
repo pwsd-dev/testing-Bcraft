@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// import * as firebase from "firebase";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
 
@@ -65,7 +66,11 @@ function FormAuthorizaton({ handleClick }) {
         initialValues={initialValues}
         validateOnBlur
         onSubmit={(values) => {
-          setTimeout(console.log(JSON.stringify(values)), 300);
+          const { email, password } = values;
+          handleRegister(email, password);
+          handleClick(email, password);
+
+          // setTimeout(console.log(JSON.stringify(values)), 300);
         }}
         validationSchema={validationSchema}
       >
