@@ -1,10 +1,33 @@
 import React from "react";
 import { Formik } from "formik";
-import { Link } from "react-router-dom";
 import * as yup from "yup";
-import LocalStorageUpdate from "../LocalStorageUpdate";
 
-function FormAuthorizaton({ onCb }) {
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/slices/userSlice";
+
+function FormAuthorizaton({ handleClick }) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const dispatch = useDispatch();
+
+  const handleRegister = (email, password) => {
+    const auth = getAuth();
+    console.log(auth);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        dispatch(
+          setUser({
+            email: user.email,
+            user: user.uid,
+            token: user.accessToken,
+          })
+        );
+      })
+      .catch(console.error);
+  };
+
   const validationSchema = yup.object().shape({
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
@@ -64,7 +87,11 @@ function FormAuthorizaton({ onCb }) {
                   className={`input`}
                   type={`text`}
                   name={`email`}
-                  onChange={(handleChange, handleChangeTwo)}
+                  onChange={
+                    ((e) => setEmail(e.target.value),
+                    handleChange,
+                    handleChangeTwo)
+                  }
                   onBlur={handleBlur}
                   defaultValue={values.email}
                 />
@@ -78,7 +105,7 @@ function FormAuthorizaton({ onCb }) {
                   className={`input`}
                   type={`password`}
                   name={`password`}
-                  onChange={handleChange}
+                  onChange={((e) => setPassword(e.target.value), handleChange)}
                   onBlur={handleBlur}
                   value={values.password}
                 />
@@ -104,8 +131,12 @@ function FormAuthorizaton({ onCb }) {
               <button
                 className={"button"}
                 disabled={!isValid && !dirty}
-                onClick={handleSubmit}
-                type={`submit`}
+                onClick={
+                  (() => handleClick(email, password),
+                  handleSubmit,
+                  handleRegister)
+                }
+                type={`button`}
               >
                 Далее
               </button>

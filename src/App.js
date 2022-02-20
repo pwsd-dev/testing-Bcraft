@@ -3,18 +3,18 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Authorization, Login, ChangePassword } from "./pages";
 
 import "./scss/app.scss";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchItems } from "./redux/actions/app";
+// import { useSelector, useDispatch } from "react-redux";
+// import { fetchItems } from "./redux/actions/app";
 
 function App() {
-  const dispatch = useDispatch();
-  const myItems = useSelector(({ app }) => app);
+  // const dispatch = useDispatch();
+  // const myItems = useSelector(({ app }) => app);
 
-  console.log(myItems);
+  // console.log(myItems);
 
-  React.useEffect(() => {
-    dispatch(fetchItems());
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   dispatch(fetchItems());
+  // }, [dispatch]);
 
   return (
     <div className="wrapper">

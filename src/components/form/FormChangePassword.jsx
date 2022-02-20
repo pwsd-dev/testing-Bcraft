@@ -18,14 +18,27 @@ function FormChangePassword() {
       .required("Обязательно"),
   });
 
+  const isValues = localStorage.getItem("email");
+
+  let initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  if (isValues) {
+    initialValues.email = isValues;
+  }
+
+  let handleChangeTwo = (e) => {
+    localStorage.setItem("email", e.target.value);
+  };
+
   return (
     <div className="container-form">
       <Formik
-        initialValues={{
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
+        initialValues={initialValues}
         validateOnBlur
         onSubmit={(values) => {
           console.log(values);
@@ -89,7 +102,7 @@ function FormChangePassword() {
               className={"button"}
               disabled={!isValid && !dirty}
               onClick={handleSubmit}
-              type={`submit`}
+              type={`button`}
             >
               Далее
             </button>

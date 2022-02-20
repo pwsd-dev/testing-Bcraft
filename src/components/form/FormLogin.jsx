@@ -2,8 +2,21 @@ import React from "react";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/slices/userSlice";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-function FormLogin() {
+function FormLogin({ handleClick }) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
+  const dispatch = useDispatch();
+
+  const handleLogin = (email, password) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password).then(console.log);
+  };
+
   const validationSchema = yup.object().shape({
     email: yup.string().email("Введите верный email").required("Обязательно"),
     password: yup
@@ -18,14 +31,27 @@ function FormLogin() {
       .required("Обязательно"),
   });
 
+  const isValues = localStorage.getItem("email");
+
+  let initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  if (isValues) {
+    initialValues.email = isValues;
+  }
+
+  let handleChangeTwo = (e) => {
+    localStorage.setItem("email", e.target.value);
+  };
+
   return (
     <div className="container-form">
       <Formik
-        initialValues={{
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
+        initialValues={initialValues}
         validateOnBlur
         onSubmit={(values) => {
           setTimeout(console.log(JSON.stringify(values)), 300);
@@ -49,7 +75,11 @@ function FormLogin() {
                 className={`input`}
                 type={`text`}
                 name={`email`}
-                onChange={handleChange}
+                onChange={
+                  ((e) => setEmail(e.target.value),
+                  handleChange,
+                  handleChangeTwo)
+                }
                 onBlur={handleBlur}
                 value={values.email}
               />
@@ -63,7 +93,7 @@ function FormLogin() {
                 className={`input`}
                 type={`password`}
                 name={`password`}
-                onChange={handleChange}
+                onChange={((e) => setPassword(e.target.value), handleChange)}
                 onBlur={handleBlur}
                 value={values.password}
               />
@@ -75,8 +105,8 @@ function FormLogin() {
               <button
                 className={"button"}
                 disabled={!isValid && !dirty}
-                onClick={handleSubmit}
-                type={`submit`}
+                onClick={(() => handleClick(email, password), handleSubmit)}
+                // type={`submit`}
               >
                 Далее
               </button>
