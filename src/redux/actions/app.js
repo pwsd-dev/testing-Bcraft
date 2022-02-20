@@ -11,6 +11,6 @@ export const fetchItems = () => (dispatch) => {
 };
 
 export const setItems = (items) => ({
-  type: "SET_ITEMS",
+  type: "GET_ITEMS",
   payload: items,
 });
