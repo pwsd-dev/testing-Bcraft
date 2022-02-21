@@ -1,6 +1,6 @@
 @import "fonts";
 @import "variables";
-
+@import "./libs/include-media";
 body {
   background-color: $background;
 }
@@ -12,6 +12,10 @@ body {
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1400px;
+
+  @include media("<=phone") {
+    width: calc(100vw - 20px);
+  }
 }
 
 .content {
@@ -49,6 +53,10 @@ body {
     height: 30px;
     outline: none;
     border-radius: 5px;
+
+    @include media("<=phone") {
+      width: 70vw;
+    }
   }
 
   button {
