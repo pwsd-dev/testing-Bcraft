@@ -1,39 +1,43 @@
 import React from "react";
+// import { ChartS } from "../../js/ChartS";
+import { Line } from "react-chartjs-2";
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
 
-function Chart() {
-  var data = [
-      { y: "2014", a: 50, b: 90 },
-      { y: "2015", a: 65, b: 75 },
-      { y: "2016", a: 50, b: 50 },
-      { y: "2017", a: 75, b: 60 },
-      { y: "2018", a: 80, b: 65 },
-      { y: "2019", a: 90, b: 70 },
-      { y: "2020", a: 100, b: 75 },
-      { y: "2021", a: 115, b: 75 },
-      { y: "2022", a: 120, b: 85 },
-      { y: "2023", a: 145, b: 85 },
-      { y: "2024", a: 160, b: 95 },
-    ],
-    config = {
-      data: data,
-      xkey: "y",
-      ykeys: ["a", "b"],
-      labels: ["Total Income", "Total Outcome"],
-      fillOpacity: 0.6,
-      hideHover: "auto",
-      behaveLikeLine: true,
-      resize: true,
-      pointFillColors: ["#ffffff"],
-      pointStrokeColors: ["black"],
-      lineColors: ["gray", "red"],
-    };
-  config.element = "line-chart";
-  new Morris.Line(config);
+const state = {
+  labels: ["January", "February", "March", "April", "May"],
+  datasets: [
+    {
+      label: "Rainfall",
+      fill: false,
+      lineTension: 0.5,
+      backgroundColor: "rgba(75,192,192,1)",
+      borderColor: "rgba(0,0,0,1)",
+      borderWidth: 2,
+      data: [65, 59, 80, 81, 56],
+    },
+  ],
+};
+
+function DemoChart() {
   return (
     <div>
-      <div id="area-chart"></div>
+      <Line
+        data={state}
+        options={{
+          title: {
+            display: true,
+            text: "Average Rainfall per month",
+            fontSize: 20,
+          },
+          legend: {
+            display: true,
+            position: "right",
+          },
+        }}
+      />
     </div>
   );
 }
 
-export default Chart;
+export default DemoChart;
