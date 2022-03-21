@@ -17,14 +17,14 @@ function App() {
 
         <nav className="container-form container-form__nav">
           <Link to="/">
-            <button className="button">Authorization</button>
+            <button className="button">Register</button>
           </Link>
           <Link to="/login">
             <button className="button">Login</button>
           </Link>
-          <Link to="/changePassword">
+          {/* <Link to="/changePassword">
             <button className="button">ChangePassword</button>
-          </Link>
+          </Link> */}
         </nav>
       </div>
     </div>
