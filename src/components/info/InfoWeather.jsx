@@ -28,14 +28,14 @@ function InfoWeather(props) {
           </div>
           <div className="d-flex justify-between align-center">
             <div>
-              <p className="">Third </p>
+              <p className="">Fourth </p>
               <p>({props.dateFourth})</p>
             </div>
             :<p>{props.tempFourth} &#176;</p>
           </div>
           <div className="d-flex justify-between align-center">
             <div>
-              <p className="">Third </p>
+              <p className="">Fifth </p>
               <p>({props.dateFifth})</p>
             </div>
             :<p>{props.tempFifth} &#176;</p>

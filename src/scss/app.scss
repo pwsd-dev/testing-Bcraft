@@ -42,12 +42,18 @@ body {
 }
 
 .myselect {
-  // height: 200px;
-  display: flex;
+  // // height: 200px;
+  // display: flex;
+  // justify-content: space-between;
 }
 
 .margin {
   margin-left: 20px;
+}
+
+.margin-top-bottom {
+  margin-top: 10px;
+  margin-bottom: 50px;
 }
 
 #area-chart {

@@ -1,5 +1,4 @@
 import React from "react";
-// import { ChartS } from "../../js/ChartS";
 import { Line } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
@@ -8,7 +7,7 @@ const state = {
   labels: ["January", "February", "March", "April", "May"],
   datasets: [
     {
-      label: "Rainfall",
+      label: "Weather",
       fill: false,
       lineTension: 0.5,
       backgroundColor: "rgba(75,192,192,1)",
@@ -21,9 +20,11 @@ const state = {
 
 function DemoChart() {
   return (
-    <div>
+    <div className="margin-top-bottom">
       <Line
         data={state}
+        width={500}
+        height={300}
         options={{
           title: {
             display: true,
