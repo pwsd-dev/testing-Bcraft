@@ -47,7 +47,18 @@ function WeatherComponent() {
         tempFifth={stateMain.tempFifth}
         dateFifth={stateMain.dateFifth}
       />
-      <Chart />
+      <Chart
+        tempNow={stateMain.tempNow}
+        dateNow={stateMain.dateNow}
+        tempTommorow={stateMain.tempTommorow}
+        dateTommorow={stateMain.dateTommorow}
+        tempThird={stateMain.tempThird}
+        dateThird={stateMain.dateThird}
+        tempFourth={stateMain.tempFourth}
+        dateFourth={stateMain.dateFourth}
+        tempFifth={stateMain.tempFifth}
+        dateFifth={stateMain.dateFifth}
+      />
     </div>
   );
 }

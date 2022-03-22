@@ -10,35 +10,35 @@ function InfoWeather(props) {
               <p className="">Now </p>
               <p>({props.dateNow})</p>
             </div>
-            :<p>{props.tempNow} &#176;</p>
+            :<p className="fz-20">{props.tempNow} &#176;</p>
           </div>
           <div className="d-flex justify-between align-center">
             <div>
               <p className="">Tommorow </p>
               <p>({props.dateTommorow})</p>
             </div>
-            :<p>{props.tempTommorow} &#176;</p>
+            :<p className="fz-20">{props.tempTommorow} &#176;</p>
           </div>
           <div className="d-flex justify-between align-center">
             <div>
               <p className="">Third </p>
               <p>({props.dateThird})</p>
             </div>
-            :<p>{props.tempThird} &#176;</p>
+            :<p className="fz-20">{props.tempThird} &#176;</p>
           </div>
           <div className="d-flex justify-between align-center">
             <div>
               <p className="">Fourth </p>
               <p>({props.dateFourth})</p>
             </div>
-            :<p>{props.tempFourth} &#176;</p>
+            :<p className="fz-20">{props.tempFourth} &#176;</p>
           </div>
           <div className="d-flex justify-between align-center">
             <div>
               <p className="">Fifth </p>
               <p>({props.dateFifth})</p>
             </div>
-            :<p>{props.tempFifth} &#176;</p>
+            :<p className="fz-20">{props.tempFifth} &#176;</p>
           </div>
         </div>
       ) : null}

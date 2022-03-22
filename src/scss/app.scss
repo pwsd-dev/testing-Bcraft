@@ -22,6 +22,30 @@ body {
   padding: 40px 0;
 }
 
+canvas {
+  height: 100%;
+}
+
+.canvas-container {
+  // height: 40vh;
+  width: 60vw;
+
+  @include media("<=tablet") {
+    // height: 40vh;
+    width: 70vw;
+  }
+
+  @include media("<=phone") {
+    // height: 20vh;
+    margin: 0 auto;
+    width: 90vw;
+  }
+}
+
+.fz-20 {
+  font-size: 20px;
+}
+
 .container-form {
   margin: 0 auto;
   display: flex;
@@ -39,6 +63,18 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+}
+
+.select {
+  margin: 0 auto;
+  width: 300px;
+  @include media("<=tablet") {
+    width: 60vw;
+  }
+
+  @include media("<=phone") {
+    width: 90vw;
+  }
 }
 
 .myselect {
@@ -70,6 +106,10 @@ body {
 
 .w-300 {
   width: 300px;
+
+  @include media("<=phone") {
+    width: 75vw;
+  }
 }
 
 .padding-20 {
