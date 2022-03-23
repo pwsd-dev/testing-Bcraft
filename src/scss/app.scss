@@ -134,19 +134,26 @@ canvas {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 25px;
 
   label {
     display: flex;
     margin-bottom: 10px;
+    font-family: "Proxima Nova";
   }
 
   .input {
+    font-family: "Proxima Nova";
     border-color: rgba(64, 64, 64, 0.1);
     padding-left: 10px;
-    width: 30vw;
-    height: 30px;
+    width: 40vw;
+    height: 35px;
     outline: none;
     border-radius: 5px;
+
+    @include media("<=tablet") {
+      width: 60vw;
+    }
 
     @include media("<=phone") {
       width: 70vw;
@@ -154,21 +161,36 @@ canvas {
   }
 
   button {
+    font-family: "Proxima Nova";
     align-self: flex-end;
   }
 }
 
+.proxima {
+  font-family: "Proxima Nova";
+}
+
 .button {
-  height: 35px;
+  font-family: "Proxima Nova";
+  height: 37px;
   padding: 0 20px;
   background-color: $background;
   color: #fff;
   border: none;
   border-radius: 10px;
-  margin-top: 30px;
+  // margin-top: 30px;
+  margin-right: 10px;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    transition: 0.2s ease-in-out;
+    background-color: #ff4978;
+  }
 }
 
 .error {
+  padding: 0 25px;
+  font-family: "Proxima Nova";
   color: red;
   align-self: flex-start;
 }

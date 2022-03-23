@@ -27,7 +27,19 @@ function FormAuthorizaton({ handleClick }) {
         );
         navigate("/home");
       })
-      .catch(console.error);
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == "auth/wrong-password") {
+          alert("Неправильный пароль");
+        } else if (errorCode == "auth/user-not-found") {
+          alert("Пользователь не найден");
+        } else if (errorCode == "auth/email-already-in-use") {
+          alert("такой email уже используется");
+        } else {
+          alert(errorMessage);
+        }
+      });
   };
 
   const validationSchema = yup.object().shape({

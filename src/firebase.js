@@ -9,4 +9,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
+// const functions = require("firebase-functions");
+// const admin = require("firebase-admin");
+
 const app = initializeApp(firebaseConfig);

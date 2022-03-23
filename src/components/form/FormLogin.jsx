@@ -15,7 +15,6 @@ function FormLogin({ handleClick }) {
 
   const handleLogin = (email, password) => {
     const auth = getAuth();
-
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         dispatch(
@@ -27,7 +26,17 @@ function FormLogin({ handleClick }) {
         );
         navigate("/home");
       })
-      .catch(console.error);
+      .catch(function (error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == "auth/wrong-password") {
+          alert("Неправильный пароль");
+        } else if (errorCode == "auth/user-not-found") {
+          alert("Пользователь не найден");
+        } else {
+          alert(errorMessage);
+        }
+      });
   };
 
   const validationSchema = yup.object().shape({
@@ -40,21 +49,21 @@ function FormLogin({ handleClick }) {
       .required("Обязательно"),
   });
 
-  const isValues = localStorage.getItem("email");
-
   let initialValues = {
     name: "",
     email: "",
     password: "",
   };
 
-  if (isValues) {
-    initialValues.email = isValues;
-  }
+  // const isValues = localStorage.getItem("email");
 
-  let handleChangeTwo = (e) => {
-    localStorage.setItem("email", e.target.value);
-  };
+  // if (isValues) {
+  //   initialValues.email = isValues;
+  // }
+
+  // let handleChangeTwo = (e) => {
+  //   localStorage.setItem(e.target.value, "email");
+  // };
 
   return (
     <div className="container-form">
@@ -84,11 +93,7 @@ function FormLogin({ handleClick }) {
                 className={`input`}
                 type={`text`}
                 name={`email`}
-                onChange={
-                  ((e) => setEmail(e.target.value),
-                  handleChange,
-                  handleChangeTwo)
-                }
+                onChange={((e) => setEmail(e.target.value), handleChange)}
                 onBlur={handleBlur}
                 value={values.email}
               />
